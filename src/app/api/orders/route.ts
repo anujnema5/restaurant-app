@@ -4,20 +4,20 @@ import { NextRequest, NextResponse } from "next/server";
 
 // FETCH ALL ORDERS
 export const GET = async (request: NextRequest) => {
-
     const session = await getAuthSession();
 
-    if (session) {
+    if (session) {        
         try {
             if (session.user.isAdmin) {
-                const orders = prisma.order.findMany();
+                const orders = await prisma.order.findMany();
                 return new NextResponse(JSON.stringify(orders), { status: 200 });
             }
-            const orders = prisma.order.findMany({
+            const orders = await prisma.order.findMany({
                 where : {
                     userEmail: session.user.email!
                 }
             });
+            
             return new NextResponse(JSON.stringify(orders), { status: 200 });
         } catch (error) {
             console.log(error);
