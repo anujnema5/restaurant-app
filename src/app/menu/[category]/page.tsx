@@ -10,7 +10,8 @@ type Props = {
 
 const getData = async (category: string) => {
   const res = await fetch(`http://localhost:3000/api/products?cat=${category}`, {
-    cache: "no-store"
+    cache: "no-store",
+    method: "GET"
   })
 
   if (!res.ok) {

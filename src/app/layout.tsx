@@ -30,8 +30,8 @@ export default function RootLayout({
               <Notification />
               <Navbar />
               {children}
-              <Footer />
               <ToastContainer position="bottom-right" theme="dark" autoClose={3000}/>
+              <Footer />
             </div>
           </QueryProvider>
         </AuthProvider>

@@ -1,10 +1,14 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+// UPDATING STATUS OF ORDER
 export const PUT = async (req: NextRequest, { params }: { params: { id: string } }) => {
-    const { id } = params
+    const { id } = params    
+        
     try {
         const body = await req.json()
+        console.log(body);
+        
         await prisma.order.update({
             where: {
                 id: id

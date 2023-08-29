@@ -70,11 +70,10 @@ const OrdersPage = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item: OrderType) =>
+          {data?.map((item: OrderType) =>
           (
-            <tr className="text-sm md:text-base bg-red-50" key={item.id}>
+            <tr className={`text-sm md:text-base ${item.status !== "delivered" ? "bg-red-100" : "bg-green-100"}`} key={item.id}>
               <td className="hidden md:block py-6 px-1">{item.id}</td>
-              {/* <td className="py-6 px-1">{item.createdAt.toISOString()}</td> */}
               <td className="py-6 px-1">2023-08-12</td>
               <td className="py-6 px-1">{item.price}</td>
               <td className="hidden md:block py-6 px-1">{item.products[0].title}</td>
@@ -83,7 +82,7 @@ const OrdersPage = () => {
                 <td>
                   <form className="flex items-center justify-center gap-4" onSubmit={(e) => handleUpdate(e, item.id)}>
                     <input placeholder={item.status} className="p-2 ring-1 ring-red-100 rounded-md" />
-                    <button className="bg-red-500 p-2 rounded-full">
+                    <button type="submit" className="bg-red-500 p-2 rounded-full">
                       <Image src={"/edit.png"} alt="" width={20} height={20} />
                     </button>
                   </form>

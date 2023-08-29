@@ -5,6 +5,7 @@ import React from "react";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/products", {
+    method: "GET",
     cache: "no-store"
   })
 
